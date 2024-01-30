@@ -1,15 +1,170 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth box-border">
+<!DOCTYPE HTML>
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portofolio</title>
-    <script type="module" crossorigin src="/assets/index-72ef34b7.js"></script>
-    <link rel="stylesheet" href="/assets/index-fc280f99.css">
+    <title>GPS UI</title>
+    <!-- Meta tag -->
+    <meta name="description" content="Description for this site.">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   	<!-- CSS only -->
+    <link rel="stylesheet" href="style.css"/>
   </head>
-  <body>
-    <div id="root" class="flex flex-col w-[95vw] items-center justify-cente mx-auto gap-1 shadow-2xl shadow-gray-500"></div>
-    
-  </body>
+<body>
+<div id="container"> 	
+    <header>
+    	<div class="header-top">
+	    	<div></div>
+	    	<div></div>
+	    	<div></div>
+	    	<div>2 CM > </div>
+	    	<div></div>
+	    	<div></div>
+	    	<div></div>
+	    </div>
+	    <div class="header-bottom">
+	    	<div>0.8 Kmh</div>
+	    	<div class="header-bottom-child">
+	    		<span>342.33 HA</span>
+	    		<span>Current Line: 12.521 degrees</span>
+	    	</div>
+	    	<div id="show-field">Field 0</div>
+	    </div>
+    </header>
+    <div class="content">
+    	<aside class="left-aside">
+    		<div onclick="openModal('selectwidth')">
+    			<img src="./assets/Select Width.svg" alt="select width"/>
+    			<span>Select Width</span>
+    		</div>
+    		<div onclick="openModal('selectfield')">
+    			<img src="./assets/Select Field.svg" alt="select field"/>
+    			<span>Select Field</span>
+    		</div>
+    		<div onclick="openModal('systemsettings')">
+    			<img src="./assets/System Settings.svg" alt="system settings"/>
+    			<span>System Settings</span>
+    		</div>
+    	</aside>
+    	<main>
+    		tengah
+    	</main>
+    	<aside class="right-aside">
+    		<div>
+    			<img src="./assets/Manual AB.svg" alt="manual ab"/>
+    			<span>Manual AB</span>
+    		</div>
+    		<div onclick="openModal('enterab')">
+    			<img src="./assets/Enter AB Coordinates.svg" alt="enter ab coordinates"/>
+    			<span>ENTER A - B Coordinates</span>
+    		</div>
+    		<div onclick="openModal('enterdegrees')">
+    			<img src="./assets/Enter Degrees.svg" alt="enter degrees"/>
+    			<span>Enter Degrees</span>
+    		</div>
+    		<div onclick="openModal('selectab')">
+    			<img src="./assets/Select AB Line.svg" alt="select ab line"/>
+    			<span>Select AB Line</span>
+    		</div>
+    		<div>
+    			<img src="./assets/Center Line.svg" alt="center line"/>
+    			<span>Center Line</span>
+    		</div>
+    		<div class="shift">
+    			<div>
+    				<img src="./assets/Shift Left.svg" alt="shift left"/>
+    				<span>Shift Left</span>
+    			</div>
+    			<div>
+    				<img src="./assets/Shift Right.svg" alt="shift right"/>
+    				<span>Shift Right</span>
+    			</div>
+    		</div>
+    		<div>
+    			<img src="./assets/Steer.svg" alt="steer"/>
+    			<span>Steer</span>
+    		</div>
+    	</aside>
+    </div>
+    <footer>
+    </footer>
+    <div id="selectwidth" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Select Width</span>
+    			<span class="close" onclick="closeModal('selectwidth')">&times;</span>
+    		</div>
+    		<div id="width-content">
+    		</div>
+    		<div class="width-bottom">
+    			<button class="select-button" onclick="selectwidths()">Select Width</button>
+    			<button class="remove-button">Remove Width</button>
+    		</div>
+    	</div>
+    </div>
+    <div id="selectfield" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Select Field</span>
+    			<span class="close" onclick="closeModal('selectfield')">&times;</span>
+    		</div>
+    		<div id="field-content">
+    		</div>
+    		<div id="new-field">
+    		</div>
+    		<div class="field-bottom">
+    			<button class="select-button" onclick="selectField()">Select Field</button>
+    			<button class="add-button" onclick="showInputField()">Add Field</button>
+    			<button class="remove-button" onclick="deleteField()">Remove Field</button>
+    		</div>
+    	</div>
+    </div>
+    <div id="systemsettings" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>System Settings</span>
+    			<span class="close" onclick="closeModal('systemsettings')">&times;</span>
+    		</div>
+    		<div id="settings-content">
+    			This is system settings modal
+    		</div>
+    	</div>
+    </div>
+    <div id="enterab" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Enter AB Coordinates</span>
+    			<span class="close" onclick="closeModal('enterab')">&times;</span>
+    		</div>
+    		<div id="enterab-content">
+    			This is enter ab modal
+    		</div>
+    	</div>
+    </div>
+    <div id="enterdegrees" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Enter Degrees</span>
+    			<span class="close" onclick="closeModal('enterdegrees')">&times;</span>
+    		</div>
+    		<div id="enterdegrees-content">
+    			This is enter degrees modal
+    		</div>
+    	</div>
+    </div>
+    <div id="selectab" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Select AB Line</span>
+    			<span class="close" onclick="closeModal('selectab')">&times;</span>
+    		</div>
+    		<div id="selectab-content">
+    			This is select ab modal
+    		</div>
+    	</div>
+    </div>
+</div>
+<script src="./script.js" type="text/javascript"></script>
+<script src="./width.js" type="text/javascript"></script>
+<script src="./field.js" type="text/javascript"></script>
+</body>
 </html>

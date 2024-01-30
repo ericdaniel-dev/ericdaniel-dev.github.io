@@ -1,0 +1,293 @@
+:root{
+	--backgrounds: #DEDAB4;
+	--whites: #F9FAFB;
+	--greens: #A3E635;
+	--greys: #E8E8E8;
+	--yellows: #FCD34D;
+	--darkgreys: #6B7280;
+	--selects: #A4D0A4;
+	--removes: #B91C1C;
+	--selected: #A4D0A4;
+}
+
+body{
+	background: var(--backgrounds);
+}
+#container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+header{
+	width: 395px;
+	height: 144px;
+	background: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 5px;
+	padding: 12px;
+	border-radius: 25px;
+}
+.header-top{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.header-top div{
+	background: var(--greens);
+	padding: 10px;
+	border-radius: 5px;
+}
+.header-top div:nth-child(4){
+	background: var(--greys);
+	border: 1px solid black;
+	border-radius: 5px;
+}
+.header-bottom{
+	padding-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	border-top: 1px solid black;
+}
+.header-bottom div:not(:nth-child(2)){
+	color: var(--darkgreys);
+}
+.header-bottom-child{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.header-bottom span:nth-child(1){
+	color: var(--darkgreys);
+}
+
+.content{
+	width: 90vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.left-aside{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.left-aside div{
+	text-align: center;
+	background: var(--whites);
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+}
+.left-aside div img{
+	width: 25px;
+	height: 25px;
+}
+main{
+
+}
+.right-aside{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.right-aside div:not(:nth-child(6)){
+	text-align: center;
+	background: var(--whites);
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+}
+.right-aside .shift{
+	display: flex;
+	flex-direction: row;
+	gap: 3px;
+}
+.right-aside .shift div img{
+	display: flex;
+	flex-direction: row;
+	gap: 3px;
+}
+.right-aside div img{
+	width: 25px;
+	height: 25px;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+}
+.modal-header{
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+.modal-header > span{
+	font-size: 20px;
+}
+.modal-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 30px;
+}
+#width-content{
+	overflow: hidden;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+#width-content > div:not(.width-selected) {
+	display: flex;
+	flex-direction: row;
+	background: var(--greys);
+	padding: 10px;
+	align-items: center;
+	gap: 5px;
+	border-radius: 10px;
+}
+#width-content > .width-selected {
+	display: flex;
+	flex-direction: row;
+	background: var(--selected);
+	padding: 10px;
+	align-items: center;
+	gap: 5px;
+	border-radius: 10px;
+}
+#width-content > div > img {
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+.width-bottom{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+#field-content{
+	overflow: hidden;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+#field-content > div:not(.field-selected) {
+	display: flex;
+	flex-direction: row;
+	background: var(--greys);
+	padding: 10px;
+	align-items: center;
+	gap: 5px;
+	border-radius: 10px;
+}
+#field-content > .field-selected {
+	display: flex;
+	flex-direction: row;
+	background: var(--selected);
+	padding: 10px;
+	align-items: center;
+	gap: 5px;
+	border-radius: 10px;
+}
+#field-content > div > img {
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+.field-bottom{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+#new-field{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px;
+}
+#new-field > input{
+	font-size: 20px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	padding: 5px;
+}
+#new-field > button{
+	background: var(--selects);
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid white;	
+}
+.selections{
+	display: flex;
+	flex-direction: column;
+	width: 550px;
+	padding: 5px;
+	cursor: pointer;
+}
+.selections span:nth-child(1){
+	font-size: 20px;
+}
+.selections span:nth-child(2){
+	font-size: 16px;
+}
+.select-button{
+	background: var(--selects);
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+.add-button{
+	background: var(--selects);
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+.remove-button{
+	background: var(--removes);
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid white;
+}
