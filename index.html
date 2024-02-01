@@ -13,19 +13,19 @@
 <div id="container"> 	
     <header>
     	<div class="header-top">
-	    	<div></div>
-	    	<div></div>
-	    	<div></div>
-	    	<div>2 CM > </div>
-	    	<div></div>
-	    	<div></div>
-	    	<div></div>
+	    	<div id="first-dot"></div>
+	    	<div id="second-dot"></div>
+	    	<div id="third-dot"></div>
+	    	<div id="distances" onclick="openModal('distancemodal')"><span id="show-distance"></span> CM </div>
+	    	<div id="fourth-dot"></div>
+	    	<div id="fifth-dot"></div>
+	    	<div id="sixth-dot"></div>
 	    </div>
 	    <div class="header-bottom">
 	    	<div>0.8 Kmh</div>
 	    	<div class="header-bottom-child">
 	    		<span>342.33 HA</span>
-	    		<span>Current Line: 12.521 degrees</span>
+	    		<span>Current Line: <span id="show-degree"></span> degrees</span>
 	    	</div>
 	    	<div id="show-field">Field 0</div>
 	    </div>
@@ -46,7 +46,36 @@
     		</div>
     	</aside>
     	<main>
-    		tengah
+    		<div id="middle">
+	    		<div class="line">
+	    			<span></span>
+	    			<span></span>
+	    			<span></span>
+	    		</div>
+	    		<div class="line">
+	    			<span></span>
+	    			<span></span>
+	    			<span></span>
+	    		</div>
+	    		<div class="line">
+	    			<span></span>
+	    			<span></span>
+	    			<span></span>
+	    		</div>
+	    		<div class="line">
+	    			<span></span>
+	    			<span></span>
+	    			<span></span>
+	    		</div>
+	    		<div class="line">
+	    			<span></span>
+	    			<span></span>
+	    			<span></span>
+	    		</div>
+	    	</div>
+	    	<div id="middle-bottom">
+	    		<div id="triangle"></div>
+	    	</div>
     	</main>
     	<aside class="right-aside">
     		<div>
@@ -147,7 +176,11 @@
     			<span class="close" onclick="closeModal('enterdegrees')">&times;</span>
     		</div>
     		<div id="enterdegrees-content">
-    			This is enter degrees modal
+    			<input type="text" name="inputdegree" id="inputdegree" placeholder="12/26">
+ 					<div>
+	 					<button class="select-button" onclick="updateDegree()">Enter</button>
+	 					<button class="remove-button" onclick="closeModal('enterdegrees')">Cancel</button>
+	 				</div>
     		</div>
     	</div>
     </div>
@@ -157,8 +190,29 @@
     			<span>Select AB Line</span>
     			<span class="close" onclick="closeModal('selectab')">&times;</span>
     		</div>
-    		<div id="selectab-content">
-    			This is select ab modal
+    		<div id="ABline-content">
+    		</div>
+    		<div id="new-ABline">
+    		</div>
+    		<div class="selectab-bottom">
+    			<button class="select-button" onclick="selectABline()">Select Line</button>
+    			<button class="add-button" onclick="showInputABline()">Add Line</button>
+    			<button class="remove-button" onclick="deleteABline()">Remove Line</button>
+    		</div>
+    	</div>
+    </div>
+    <div id="distancemodal" class="modal">
+    	<div class="modal-content">
+    		<div class="modal-header">
+    			<span>Distance</span>
+    			<span class="close" onclick="closeModal('distancemodal')">&times;</span>
+    		</div>
+    		<div id="distance-content">
+    			<input type="text" name="newdistance" id="newdistance" placeholder="new distance">	
+    		</div>
+    		<div class="distance-bottom">
+    			<button class="select-button" onclick="changeDistance()">Save</button>
+    			<button class="remove-button" onclick="closeModal('distancemodal')">Cancel</button>
     		</div>
     	</div>
     </div>
@@ -166,5 +220,8 @@
 <script src="./script.js" type="text/javascript"></script>
 <script src="./width.js" type="text/javascript"></script>
 <script src="./field.js" type="text/javascript"></script>
+<script src="./degrees.js" type="text/javascript"></script>
+<script src="./abline.js" type="text/javascript"></script>
+<script src="./distance.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 let CurrentField = 0;
-window.onload =  function(){
-	loadFieldData();
-}
+// window.onload =  function(){
+// 	loadFieldData();
+// }
 let InputFieldIsShow = false;
 function showInputField(){
 	if(InputFieldIsShow){
@@ -40,7 +40,6 @@ function deleteField(){
 	else{
 		console.log("Error: Invalid index");
 	}
-
 }
 function setCurrentField(index){
 	CurrentField = index;

@@ -13,3 +13,9 @@ window.onclick = function(event) {
         }
     }
 }
+window.onload = () => {
+    refreshDegree();
+    loadFieldData();
+    loadABlineData();
+    refreshDistance();
+}
