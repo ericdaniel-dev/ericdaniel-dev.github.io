@@ -16,8 +16,6 @@ window.onclick = function(event) {
     }
 }
 
-let lineDegree = 0;
-
 window.onload = () => {
     refreshDegree();
     loadFieldData();
