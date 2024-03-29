@@ -1,13 +1,18 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
   <head>
     <title>GPS UI</title>
     <!-- Meta tag -->
     <meta name="description" content="Description for this site.">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    	<!-- CSS only -->
     <link rel="stylesheet" href="style.css"/>
+
+    <!-- Resource for virtual keyboard -->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="./assets/js/jkeyboard.js"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/jkeyboard.css">
   </head>
 <body>
 <div id="container"> 	
@@ -49,32 +54,10 @@
     		<div id="middle">
 	    		<div class="line">
 	    			<span></span>
-	    			<span></span>
-	    			<span></span>
-	    		</div>
-	    		<div class="line">
-	    			<span></span>
-	    			<span></span>
-	    			<span></span>
-	    		</div>
-	    		<div class="line">
-	    			<span></span>
-	    			<span></span>
-	    			<span></span>
-	    		</div>
-	    		<div class="line">
-	    			<span></span>
-	    			<span></span>
-	    			<span></span>
-	    		</div>
-	    		<div class="line">
-	    			<span></span>
-	    			<span></span>
-	    			<span></span>
 	    		</div>
 	    	</div>
 	    	<div id="middle-bottom">
-	    		<div id="triangle"></div>
+	    		<img src="./assets/Triangle.png" id="triangle" alt="Triangle"/>
 	    	</div>
     	</main>
     	<aside class="right-aside">
@@ -94,16 +77,16 @@
     			<img src="./assets/Select AB Line.svg" alt="select ab line"/>
     			<span>Select AB Line</span>
     		</div>
-    		<div>
+    		<div onclick="resetLine()">
     			<img src="./assets/Center Line.svg" alt="center line"/>
     			<span>Center Line</span>
     		</div>
     		<div class="shift">
-    			<div>
+    			<div onclick="lineToLeft()">
     				<img src="./assets/Shift Left.svg" alt="shift left"/>
     				<span>Shift Left</span>
     			</div>
-    			<div>
+    			<div onclick="lineToRight()">
     				<img src="./assets/Shift Right.svg" alt="shift right"/>
     				<span>Shift Right</span>
     			</div>
@@ -115,6 +98,14 @@
     	</aside>
     </div>
     <footer>
+    	<div id="gps-status">
+	    	<h2>GPS Status</h2>
+	    	<div class="gps-content">Status: <span class="gps-content-status"></span></div>
+	    	<div class="gps-content">Age: <span class="gps-content-age"></span></div>
+	    	<div class="gps-content">n Stats: <span class="gps-content-nstats"></span></div>
+	    	<div class="gps-content">IMU: <span class="gps-content-imu"></span></div>
+	    	<div class="gps-content">Stuurhoek: <span class="gps-content-stuurhoek"></span></div>
+	    </div>
     </footer>
     <div id="selectwidth" class="modal">
     	<div class="modal-content">
@@ -165,7 +156,33 @@
     			<span class="close" onclick="closeModal('enterab')">&times;</span>
     		</div>
     		<div id="enterab-content">
-    			This is enter ab modal
+    			<span>Coordinates A</span>
+    			<div class="inputs">
+    				<div>
+    					<label for="longitudesA">Longitutes</label>
+    					<input type="text" name="longitudesA" id="longitudesA" class="longitudes-input" placeholder="12/26">
+    				</div>
+    				<div>
+    					<label for="latitudesA">Latitudes</label>
+    					<input type="text" name="latitudesA" id="latitudesA" class="latitudes-input" placeholder="453">
+    				</div>
+    			</div>
+    			<span>Coordinates B</span>
+    			<div class="inputs">
+    				<div>
+    					<label for="longitudesB">Longitutes</label>
+    					<input type="text" name="longitudesB" id="longitudesB" class="longitudes-input" placeholder="12/26">
+    				</div>
+    				<div>
+    					<label for="latitudesB">Latitudes</label>
+    					<input type="text" name="latitudesB" id="latitudesB" class="latitudes-input" placeholder="453">
+    				</div>
+    			</div>
+    			<div id="abcoordinates-keyboard"></div>
+    			<div id="enterab-bottom">
+    				<button class="select-button" onclick="saveABCoordinates()">Save</button>
+    				<button class="remove-button" onclick="closeModal('enterab')">Cancel</button>
+    			</div>
     		</div>
     	</div>
     </div>
@@ -176,11 +193,12 @@
     			<span class="close" onclick="closeModal('enterdegrees')">&times;</span>
     		</div>
     		<div id="enterdegrees-content">
-    			<input type="text" name="inputdegree" id="inputdegree" placeholder="12/26">
+    			<input type="text" name="inputdegree" id="inputdegree" class="inputdegree" placeholder="12/26">
  					<div>
 	 					<button class="select-button" onclick="updateDegree()">Enter</button>
 	 					<button class="remove-button" onclick="closeModal('enterdegrees')">Cancel</button>
 	 				</div>
+	 				<div id="inputdegree-keyboard"></div>
     		</div>
     	</div>
     </div>
@@ -214,6 +232,7 @@
     			<button class="select-button" onclick="changeDistance()">Save</button>
     			<button class="remove-button" onclick="closeModal('distancemodal')">Cancel</button>
     		</div>
+    		<div id="newdistance-keyboard"></div>
     	</div>
     </div>
 </div>
@@ -223,5 +242,8 @@
 <script src="./degrees.js" type="text/javascript"></script>
 <script src="./abline.js" type="text/javascript"></script>
 <script src="./distance.js" type="text/javascript"></script>
+<script src="./line.js" type="text/javascript"></script>
+<script src="./abcoordinates.js" type="text/javascript"></script>
+<script src="./gps-stats.js" type="text/javascript"></script>
 </body>
 </html>

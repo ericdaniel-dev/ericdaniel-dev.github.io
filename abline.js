@@ -7,9 +7,14 @@ function showInputABline(){
 	if(InputABlineIsShow){
 		return;
 	}
+	const container = document.getElementById('ABline-content');
+	container.innerHTML = "";
 	InputABlineIsShow = true;
     const newABline = document.getElementById('new-ABline');
+    const inputABDiv = document.createElement('div'); 
     const inputABline = document.createElement('input');
+    const newABlineKeyboard = document.createElement('div');
+    newABlineKeyboard.setAttribute('id', 'new-ABline-keyboard');
     inputABline.type = 'text';
     inputABline.classList.add('input-newABline');
     inputABline.placeholder = 'Enter new ABline';
@@ -20,8 +25,15 @@ function showInputABline(){
        	InputABlineIsShow = false;
         newABline.innerHTML = "";
     };
-    newABline.appendChild(inputABline);
-    newABline.appendChild(submitABline);
+    inputABDiv.appendChild(inputABline);
+    inputABDiv.appendChild(submitABline);
+
+    newABline.appendChild(inputABDiv);
+    newABline.appendChild(newABlineKeyboard);
+    $('#new-ABline-keyboard').jkeyboard({
+	    input: $('.input-newABline'),
+	    layout: 'special'
+	});
 }
 
 function addABline(newABlineValue) {

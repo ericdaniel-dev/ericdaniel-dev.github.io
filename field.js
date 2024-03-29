@@ -7,22 +7,39 @@ function showInputField(){
 	if(InputFieldIsShow){
 		return;
 	}
+	const container = document.getElementById('field-content');
+	container.innerHTML = "";
 	InputFieldIsShow = true;
     const newField = document.getElementById('new-field');
+    const inputFieldDiv = document.createElement('div'); // Create a div to wrap input and button
     const inputField = document.createElement('input');
+    const submitField = document.createElement('button');
+    const keyboardVirtual = document.createElement('div');
+    keyboardVirtual.setAttribute('id', 'new-field-keyboard');
     inputField.type = 'text';
     inputField.classList.add('input-newfield');
     inputField.placeholder = 'Enter new field';
-    const submitField = document.createElement('button');
+
     submitField.textContent = 'Add';
     submitField.onclick = () => {
         addField(inputField.value);
        	InputFieldIsShow = false;
         newField.innerHTML = "";
     };
-    newField.appendChild(inputField);
-    newField.appendChild(submitField);
+
+    inputFieldDiv.appendChild(inputField); // Append input field to inputFieldDiv
+    inputFieldDiv.appendChild(submitField); // Append submit button to inputFieldDiv
+
+    newField.appendChild(inputFieldDiv); // Append inputFieldDiv to newField
+    newField.appendChild(keyboardVirtual); // Append keyboardVirtual directly to newField
+
+    // Initialize virtual keyboard
+    $('#new-field-keyboard').jkeyboard({
+        input: $('.input-newfield'),
+        layout: 'special'
+    });
 }
+
 
 function addField(newFieldValue) {
     const storedFieldData = JSON.parse(localStorage.getItem("FieldData")) || [];

@@ -1,5 +1,7 @@
 function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+    let modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    document.body.style.overflow = "auto";
 }
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
@@ -13,9 +15,23 @@ window.onclick = function(event) {
         }
     }
 }
+
+let lineDegree = 0;
+
 window.onload = () => {
     refreshDegree();
     loadFieldData();
     loadABlineData();
     refreshDistance();
+    loadGPS();
 }
+
+$('#inputdegree-keyboard').jkeyboard({
+    input: $('#inputdegree'),
+    layout: 'special'
+});
+
+$('#newdistance-keyboard').jkeyboard({
+    input: $('#newdistance'),
+    layout: 'special'
+});

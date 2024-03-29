@@ -3,9 +3,14 @@ let CurrentDegree;
 // 	refreshDegree();
 // }
 function updateDegree(){
-	const inputDegree = document.getElementById('inputdegree');
+	const inputDegree = document.querySelector('.inputdegree');
 	if(inputDegree){
-		CurrentDegree = inputDegree.value;
+		CurrentDegree = parseInt(inputDegree.value);
+		if(!isNumber(CurrentDegree)){
+			console.log(CurrentDegree);
+			alert("Please input number!")
+			CurrentDegree = 0;
+		}
 		refreshDegree();
 		inputDegree.value = '';
 		closeModal('enterdegrees');
@@ -29,4 +34,8 @@ function refreshDegree(){
 	}
 	const ShowDegree = document.getElementById('show-degree');
 	ShowDegree.innerHTML = CurrentDegree;
+}
+
+function isNumber(num){
+	return /^\d+$/.test(num);
 }

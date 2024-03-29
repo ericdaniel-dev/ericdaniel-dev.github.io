@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skew Animation</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    .container {
+        position: relative;
+        width: 2px; /* Thickness of the black line */
+        height: 200px; /* Height of the black line */
+        background-color: black;
+        transition: transform 0.5s ease-in-out;
+    }
+    .button-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="container"></div>
+<div class="button-container">
+    <button id="leftBtn">Left</button>
+    <button id="rightBtn">Right</button>
+</div>
+
+<script>
+    const container = document.querySelector('.container');
+    const leftBtn = document.getElementById('leftBtn');
+    const rightBtn = document.getElementById('rightBtn');
+
+    leftBtn.addEventListener('click', () => {
+        container.style.transform = 'skewY(20deg)';
+    });
+
+    rightBtn.addEventListener('click', () => {
+        container.style.transform = 'skewY(-20deg)';
+    });
+</script>
+</body>
+</html>

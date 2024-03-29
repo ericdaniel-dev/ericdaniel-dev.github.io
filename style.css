@@ -11,27 +11,40 @@
 	--greendot: #A3E635;
 	--orangedot: #F2C94C;
 	--reddot: red;
+	--blacks: black;
 }
 
 body{
 	background: var(--backgrounds);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+input{
+	background: whitesmoke;
+	padding: 5;
 }
 #container{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 20px;
 }
 header{
-	width: 395px;
-	height: 144px;
+	width: 375px;
+	height: 124px;
 	background: white;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	gap: 5px;
 	padding: 12px;
 	border-radius: 25px;
+	position: fixed; /* Position fixed to center it on the screen */
+    top: 13%; /* Position from the top */
+    left: 50%; /* Position from the left */
+    transform: translate(-50%, -50%);
 }
 .header-top{
 	display: flex;
@@ -71,6 +84,7 @@ header{
 }
 
 .content{
+	margin-top: 50px;
 	width: 90vw;
 	display: flex;
 	flex-direction: row;
@@ -119,6 +133,9 @@ main{
 	flex-direction: row;
 	gap: 3px;
 }
+.right-aside .shift div{
+	cursor: pointer;
+}
 .right-aside .shift div img{
 	display: flex;
 	flex-direction: row;
@@ -138,6 +155,8 @@ main{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
+    overflow: auto;
+    z-index: 3;
 }
 .modal-header{
 	display: flex;
@@ -160,6 +179,8 @@ main{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: auto;
+    overflow: auto;
 }
 .close{
     position: absolute;
@@ -242,23 +263,55 @@ main{
 }
 #new-field{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
 	padding: 10px;
 }
-#new-field > input{
+#new-field input{
 	font-size: 20px;
 	border: 1px solid grey;
 	border-radius: 5px;
 	padding: 5px;
 }
-#new-field > button{
+#new-field button{
 	background: var(--selects);
 	padding: 10px;
 	color: white;
 	border-radius: 5px;
 	border: 1px solid white;	
+}
+#enterab-content{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+}
+#enterab-content span{
+	font-size: 18px;
+}
+#enterab-content .inputs{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}
+#enterab-content .inputs div{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+#enterab-content input{
+	padding: 5px;
+	font-size: 16px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	width: 320px;
+}
+#enterab-bottom{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
 }
 #enterdegrees-content{
 	display: flex;
@@ -313,18 +366,18 @@ main{
 }
 #new-ABline{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
 	padding: 10px;
 }
-#new-ABline > input{
+#new-ABline input{
 	font-size: 20px;
 	border: 1px solid grey;
 	border-radius: 5px;
 	padding: 5px;
 }
-#new-ABline > button{
+#new-ABline button{
 	background: var(--selects);
 	padding: 10px;
 	color: white;
@@ -349,6 +402,12 @@ main{
 	border: 1px solid grey;
 	border-radius: 5px;
 	padding: 5px;
+}
+.distance-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: ;
 }
 .selections{
 	display: flex;
@@ -391,79 +450,72 @@ main{
 	gap: 10px;
 }
 #middle{
+	position: fixed;
+	top: 0; /* Position from the top */
+    left: 49%; /* Position from the left */
+    transform: translateX(-50%); /* Center horizontally */
 	display: flex;
 	flex-direction: row;
-	gap: 20px;
+	box-sizing: border-box;
+	height: 100%;
+    z-index: -9999;
 }
 .line{
-	height: 100%;
+	position: absolute; /* Position the line absolutely */
+    height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	margin: 0 10px;
+	margin: 0 8px;
 }
-/*.line > span {
-	border-left: 10px dashed var(--greendot);
-    width: 5px;
-    height: 100px;
-}*/
 .line > span {
-	width: 3px;
-    height: 100px;
+	width: 5px;
+    height: 100%;
 }
 .line > span:nth-child(1) {
-	border-left: 15px dashed var(--greendot);
+	border-left: 12px solid var(--blacks);
 }
-.line > span:nth-child(2) {
-	border-left: 15px dashed var(--greendot);
-}
-.line > span:nth-child(3) {
-	border-left: 15px dashed var(--greendot);
-}
-#middle > div:nth-child(1){
-	transform: skewX(20deg);
-} 
-#middle > div:nth-child(2){
-	transform: skewX(13deg);
-}
-#middle > div:nth-child(4){
-	transform: skewX(-13deg);
-}
-#middle > div:nth-child(5){
-	transform: skewX(-20deg);
+#middle-bottom {
+    position: fixed; /* Position fixed to stay at the bottom */
+    bottom: 0; /* Position from the bottom */
+    left: 50%; /* Position from the left */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 2; /* Ensure the triangle is above other content */
 }
 #triangle {
-    width: 0;
-    height: 0;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 107px solid #3498db;
+    width: 180px;
+    height: 180px;
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-	header{
-		width: 90vw;
-		height: 144px;
-		background: white;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		gap: 5px;
-		padding: 12px;
-		border-radius: 25px;
-	}
+#gps-status {
+	min-width: 198px;
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid whitesmoke;
+    border-radius: 10%;
 }
+#gps-status h2{
+	font-size: 16px;
+}
+.gps-content{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.gps-content-status{
+	color: var(--greens);
+}
+.gps-content-age{
 
-@media only screen and (max-width: 767px) {
-  header{
-		width: 90vw;
-		height: 144px;
-		background: white;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		gap: 5px;
-		padding: 12px;
-		border-radius: 25px;
-	}
+}
+.gps-content-nstats{
+
+}
+.gps-content-imu{
+
+}
+.gps-content-stuurhoek{
+
 }
