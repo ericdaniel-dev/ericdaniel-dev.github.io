@@ -122,7 +122,7 @@
     	</div>
     </div>
     <div id="selectfield" class="modal">
-    	<div class="modal-content">
+    	<div class="modal-content" id="modal-field">
     		<div class="modal-header">
     			<span>Select Field</span>
     			<span class="close" onclick="closeModal('selectfield')">&times;</span>
@@ -130,6 +130,10 @@
     		<div id="field-content">
     		</div>
     		<div id="new-field">
+    			<div id="input-field-div">
+			        <input type="text" class="input-newfield" placeholder="Enter new field">
+			        <button id="addnewfield">Add</button>
+			    </div>
     		</div>
     		<div class="field-bottom">
     			<button class="select-button" onclick="selectField()">Select Field</button>
@@ -137,6 +141,7 @@
     			<button class="remove-button" onclick="deleteField()">Remove Field</button>
     		</div>
     	</div>
+    	<div id="new-field-keyboard" class="pop-keyboard"></div>
     </div>
     <div id="systemsettings" class="modal">
     	<div class="modal-content">
@@ -185,9 +190,10 @@
     			</div>
     		</div>
     	</div>
+    	<div id="abcoordinates-keyboard" class="pop-keyboard"></div>
     </div>
-    <div id="enterdegrees" class="modal">
-    	<div class="modal-content">
+    <div id="enterdegrees" class="modal" onclick="event.stopPropagation()">
+    	<div class="modal-content" id="modal-degree">
     		<div class="modal-header">
     			<span>Enter Degrees</span>
     			<span class="close" onclick="closeModal('enterdegrees')">&times;</span>
@@ -198,9 +204,9 @@
 	 					<button class="select-button" onclick="updateDegree()">Enter</button>
 	 					<button class="remove-button" onclick="closeModal('enterdegrees')">Cancel</button>
 	 				</div>
-	 				<div id="inputdegree-keyboard"></div>
     		</div>
     	</div>
+    	<div id="inputdegree-keyboard" class="pop-keyboard"></div>
     </div>
     <div id="selectab" class="modal">
     	<div class="modal-content">
@@ -219,8 +225,8 @@
     		</div>
     	</div>
     </div>
-    <div id="distancemodal" class="modal">
-    	<div class="modal-content">
+    <div id="distancemodal" class="modal" onclick="event.stopPropagation()">
+    	<div class="modal-content" id="modal-distance">
     		<div class="modal-header">
     			<span>Distance</span>
     			<span class="close" onclick="closeModal('distancemodal')">&times;</span>
@@ -232,8 +238,8 @@
     			<button class="select-button" onclick="changeDistance()">Save</button>
     			<button class="remove-button" onclick="closeModal('distancemodal')">Cancel</button>
     		</div>
-    		<div id="newdistance-keyboard"></div>
     	</div>
+    	<div id="newdistance-keyboard" class="pop-keyboard"></div>
     </div>
 </div>
 <script src="./script.js" type="text/javascript"></script>

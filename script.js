@@ -1,8 +1,21 @@
 function openModal(modalId) {
     let modal = document.getElementById(modalId);
+    let modalContent = modal.querySelector('.modal-content');
+    let screenHeight = window.innerHeight;
+
     modal.style.display = 'block';
+
+    let modalHeight = modalContent.clientHeight;
+
+    if (modalHeight > screenHeight) {
+        modalContent.style.marginTop = '100px';
+    } else {
+        modalContent.style.marginTop = '10px';
+    }
     document.body.style.overflow = "auto";
 }
+
+
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
@@ -15,7 +28,6 @@ window.onclick = function(event) {
         }
     }
 }
-
 window.onload = () => {
     refreshDegree();
     loadFieldData();
@@ -24,12 +36,8 @@ window.onload = () => {
     loadGPS();
 }
 
-$('#inputdegree-keyboard').jkeyboard({
-    input: $('#inputdegree'),
-    layout: 'special'
-});
 
-$('#newdistance-keyboard').jkeyboard({
-    input: $('#newdistance'),
-    layout: 'special'
+// Stop propagation for click events on elements inside modal-content
+document.getElementById('modal-distance').addEventListener('click', function(event) {
+    event.stopPropagation();
 });

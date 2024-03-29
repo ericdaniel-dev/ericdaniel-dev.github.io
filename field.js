@@ -3,50 +3,59 @@ let CurrentField = 0;
 // 	loadFieldData();
 // }
 let InputFieldIsShow = false;
-function showInputField(){
-	if(InputFieldIsShow){
-		return;
-	}
-	const container = document.getElementById('field-content');
-	container.innerHTML = "";
-	InputFieldIsShow = true;
-    const newField = document.getElementById('new-field');
-    const inputFieldDiv = document.createElement('div'); // Create a div to wrap input and button
-    const inputField = document.createElement('input');
-    const submitField = document.createElement('button');
-    const keyboardVirtual = document.createElement('div');
-    keyboardVirtual.setAttribute('id', 'new-field-keyboard');
-    inputField.type = 'text';
-    inputField.classList.add('input-newfield');
-    inputField.placeholder = 'Enter new field';
-
-    submitField.textContent = 'Add';
-    submitField.onclick = () => {
-        addField(inputField.value);
-       	InputFieldIsShow = false;
-        newField.innerHTML = "";
-    };
-
-    inputFieldDiv.appendChild(inputField); // Append input field to inputFieldDiv
-    inputFieldDiv.appendChild(submitField); // Append submit button to inputFieldDiv
-
-    newField.appendChild(inputFieldDiv); // Append inputFieldDiv to newField
-    newField.appendChild(keyboardVirtual); // Append keyboardVirtual directly to newField
-
-    // Initialize virtual keyboard
-    $('#new-field-keyboard').jkeyboard({
+const newfield = document.getElementById('input-field-div');
+newfield.style.display = 'none';
+const keyboardField = document.getElementById('new-field-keyboard');
+keyboardField.style.display = 'none';
+$('#new-field-keyboard').jkeyboard({
         input: $('.input-newfield'),
         layout: 'special'
     });
-}
+// Flag to track whether the event listener for the "Add" button has been added
+let addEventListenerAdded = false;
 
+function showInputField() {
+    if (!InputFieldIsShow) {
+        newfield.style.display = 'block';
+        InputFieldIsShow = true;
+        const container = document.getElementById('field-content')
+        container.innerHTML = '';
+        const modalBox = document.querySelector('#modal-field');
+        modalBox.style.top = '30%';
+        const inputField = document.querySelector('.input-newfield');
+        inputField.addEventListener('focus', () => {
+        	keyboardField.style.display = 'block';
+        })
+        // Add event listener for the "Add" button if not already added
+        if (!addEventListenerAdded) {
+            const addnewButton = document.getElementById('addnewfield');
+            addnewButton.addEventListener('click', () => {
+                const newFieldValue = inputField.value.trim(); // Trim whitespace from input value
+                if (newFieldValue !== '') { // Only add field if input is not empty
+                    addField(newFieldValue);
+                    inputField.value = ''; // Clear input field after adding field
+                    newfield.style.display = 'none'; // Hide input field after adding field
+                    InputFieldIsShow = false; // Reset InputFieldIsShow
+                }
+                keyboardField.style.display = 'none';
+            });
+            addEventListenerAdded = true;
+        }
+    } else {
+        newfield.style.display = 'none';
+        InputFieldIsShow = false;
+    }
+}
 
 function addField(newFieldValue) {
     const storedFieldData = JSON.parse(localStorage.getItem("FieldData")) || [];
     storedFieldData.push(newFieldValue);
     localStorage.setItem("FieldData", JSON.stringify(storedFieldData));
+    const modalBox = document.querySelector('#modal-field');
+    modalBox.style.top = '50%';
     loadFieldData();
 }
+
 function deleteField(){
 	const StoredFieldData = JSON.parse(localStorage.getItem("FieldData"));
 	if(CurrentField>=0  && CurrentField<StoredFieldData.length){

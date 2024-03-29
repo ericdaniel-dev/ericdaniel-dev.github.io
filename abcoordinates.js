@@ -1,6 +1,7 @@
 // Get all input fields
 const inputs = document.querySelectorAll('.longitudes-input');
-
+const abCoordinatesKeyboard = document.getElementById('abcoordinates-keyboard');
+abCoordinatesKeyboard.style.display = 'none';
 // Initialize the keyboard plugin for the first input field
 $('#abcoordinates-keyboard').jkeyboard({
     input: $('#' + inputs[0].id), // Pass the first input field
@@ -12,6 +13,7 @@ inputs.forEach(input => {
     input.addEventListener('focus', function() {
         // Update the input target for the keyboard plugin to the currently focused input field
         $('#abcoordinates-keyboard').jkeyboard('setInput', '#' + this.id);
+        abCoordinatesKeyboard.style.display = 'block';
     });
 });
 
@@ -28,6 +30,7 @@ inputs2.forEach(input => {
     input.addEventListener('focus', function() {
         // Update the input target for the keyboard plugin to the currently focused input field
         $('#abcoordinates-keyboard').jkeyboard('setInput', '#' + this.id);
+        abCoordinatesKeyboard.style.display = 'block';
     });
 });
 
@@ -48,7 +51,8 @@ function saveABCoordinates(){
     latitudesA.value = '';
     longitudesB.value = '';
     latitudesB.value = '';
-
+    // hide keyboard
+    abCoordinatesKeyboard.style.display = 'none';
     // close modal box
     closeModal('enterab')
 }

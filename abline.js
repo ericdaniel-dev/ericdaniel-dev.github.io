@@ -15,9 +15,13 @@ function showInputABline(){
     const inputABline = document.createElement('input');
     const newABlineKeyboard = document.createElement('div');
     newABlineKeyboard.setAttribute('id', 'new-ABline-keyboard');
+    newABlineKeyboard.style.display = 'none';
     inputABline.type = 'text';
     inputABline.classList.add('input-newABline');
     inputABline.placeholder = 'Enter new ABline';
+    inputABline.addEventListener('focus', () => {
+    	newABlineKeyboard.style.display = 'block';
+    })
     const submitABline = document.createElement('button');
     submitABline.textContent = 'Add';
     submitABline.onclick = () => {

@@ -1,9 +1,8 @@
 let CurrentDegree;
-// window.onload = () => {
-// 	refreshDegree();
-// }
+const inputDegree = document.querySelector('.inputdegree');
+const keyboardDegree = document.getElementById('inputdegree-keyboard');
+keyboardDegree.style.display = 'none';
 function updateDegree(){
-	const inputDegree = document.querySelector('.inputdegree');
 	if(inputDegree){
 		CurrentDegree = parseInt(inputDegree.value);
 		if(!isNumber(CurrentDegree)){
@@ -13,11 +12,14 @@ function updateDegree(){
 		}
 		refreshDegree();
 		inputDegree.value = '';
+		keyboardDegree.style.display = 'none';
 		closeModal('enterdegrees');
 	}
 	else{
 		alert('Input degree!');
 	}
+	const modalBox = document.querySelector('#modal-degree');
+	modalBox.style.top = '50%';
 }
 function refreshDegree(){
 	if(localStorage.getItem("degrees")){
@@ -39,3 +41,13 @@ function refreshDegree(){
 function isNumber(num){
 	return /^\d+$/.test(num);
 }
+
+inputDegree.addEventListener('focus', () => {
+	const modalBox = document.querySelector('#modal-degree');
+	keyboardDegree.style.display = 'block';
+	modalBox.style.top = '20%';
+})
+$('#inputdegree-keyboard').jkeyboard({
+    input: $('#inputdegree'),
+    layout: 'special'
+});
